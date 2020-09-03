@@ -10,38 +10,101 @@
             android:layout_height="match_parent">
 
         <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/movie_detail_image"
                 android:layout_width="157dp"
                 android:layout_height="248dp"
                 android:layout_marginStart="@dimen/margin_movie_thumbnail"
                 android:layout_marginTop="@dimen/margin_movie_thumbnail"
+                android:contentDescription="Poster image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
 
         <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
+                android:id="@+id/movie_detail_name"
+                android:layout_width="203dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="@dimen/margin_movie_thumbnail"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/movie_detail_image"
+                app:layout_constraintTop_toTopOf="@+id/movie_detail_image"
                 tools:text="Superman IV: The Quest for Peace" />
 
-        <TextView
+        <ScrollView
+                android:id="@+id/scrollView2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="@dimen/margin_movie_thumbnail"
                 android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
+                android:layout_marginEnd="@dimen/margin_movie_thumbnail"
+                android:layout_marginBottom="@dimen/margin_movie_thumbnail"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_image">
+
+            <TextView
+                    android:id="@+id/movie_detail_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
+                    android:textSize="18sp"
+                    tools:text="Description" />
+        </ScrollView>
+
+        <TextView
+                android:id="@+id/movie_detail_rating"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
                 android:textSize="16sp"
-                tools:text="Description" />
+                app:layout_constraintEnd_toEndOf="@+id/movie_detail_name"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/movie_detail_name"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_name"
+                tools:text="PG-13" />
+
+        <TextView
+                android:id="@+id/movie_detail_release_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/movie_detail_rating"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/movie_detail_rating"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_rating"
+                tools:text="Release date: 2018" />
+
+        <TextView
+                android:id="@+id/movie_detail_budget"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/movie_detail_release_date"
+                app:layout_constraintStart_toStartOf="@+id/movie_detail_release_date"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_release_date"
+                tools:text="Budget: $78.000.000" />
+
+        <TextView
+                android:id="@+id/movie_detail_total_revenue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/movie_detail_budget"
+                app:layout_constraintStart_toStartOf="@+id/movie_detail_budget"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_budget"
+                tools:text="Total revenue: 102.543.518" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

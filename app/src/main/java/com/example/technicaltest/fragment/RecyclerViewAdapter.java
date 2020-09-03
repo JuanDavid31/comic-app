@@ -53,12 +53,10 @@ public class RecyclerViewAdapter extends ListAdapter<Movie, RecyclerViewAdapter.
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         Movie currentMovie = movies.get(position);
-        holder.movieName.setText(currentMovie.getName());
-        /*holder.movieDescription
-        holder.movieDescription.setText(currentMovie.getDescription());*/
+        holder.movieName.setText(currentMovie.name);
 
         Glide.with(holder.movieThumbnail.getContext())
-                .load(currentMovie.getThumbImageUrl())
+                .load(currentMovie.posterImageUrl)
                 .apply(new RequestOptions()
                         .placeholder(R.drawable.loading_animation)
                         .error(R.drawable.ic_broken_image))
@@ -80,14 +78,12 @@ public class RecyclerViewAdapter extends ListAdapter<Movie, RecyclerViewAdapter.
         private View root;
         private ImageView movieThumbnail;
         private TextView movieName;
-        //private TextView movieDescription;
 
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             this.root = itemView;
             movieThumbnail = itemView.findViewById(R.id.movie_item_thumbnail_image);
             movieName = itemView.findViewById(R.id.movie_item_title_text);
-            //movieDescription = itemView.findViewById(R.id.movie_item_description_text);
         }
     }
 
