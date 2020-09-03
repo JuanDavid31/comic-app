@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp">
+
+    <ImageView
+            android:id="@+id/modal_image"
+            android:layout_width="match_parent"
+            android:layout_height="352dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher_round" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/modal_image"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/go_full_screen_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:text="Full View"
+                android:textColor="#fff" />
+
+        <Button
+                android:id="@+id/close_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#000"
+                android:text="Close"
+                android:textColor="#fff" />
+    </LinearLayout>
+</RelativeLayout>

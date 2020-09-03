@@ -5,4 +5,6 @@
     <string name="comicVineApiKey">603aa41c30f8420b9d4fa00584acf281ddca30ef</string>
     <string name="apiUrl">https://comicvine.gamespot.com/api/</string>
     <string name="movie_thumbnail">Movie thumbnail</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

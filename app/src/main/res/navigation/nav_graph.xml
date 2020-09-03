@@ -26,5 +26,21 @@
         <argument
                 android:name="movie"
                 app:argType="com.example.technicaltest.database.Movie" />
+        <action
+                android:id="@+id/action_detailFragment_to_fullScreenImageFragment"
+                app:destination="@id/fullScreenImageFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+            android:id="@+id/fullScreenImageFragment"
+            android:name="com.example.technicaltest.fragment.FullScreenImageFragment"
+            android:label="fragment_full_screen_image"
+            tools:layout="@layout/fragment_full_screen_image" >
+        <argument
+                android:name="imgUrl"
+                app:argType="string" />
     </fragment>
 </navigation>

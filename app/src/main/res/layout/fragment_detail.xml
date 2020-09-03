@@ -18,6 +18,7 @@
                 android:contentDescription="Poster image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:adjustViewBounds="true"
                 tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -43,6 +44,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="@dimen/margin_movie_thumbnail"
                 android:layout_marginBottom="@dimen/margin_movie_thumbnail"
+                android:textAlignment="textStart"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -61,9 +63,9 @@
                 android:id="@+id/movie_detail_rating"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="TextView"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/movie_detail_name"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/movie_detail_name"
@@ -71,17 +73,17 @@
                 tools:text="PG-13" />
 
         <TextView
-                android:id="@+id/movie_detail_release_date"
+                android:id="@+id/movie_detail_runtime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/movie_detail_rating"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/movie_detail_rating"
                 app:layout_constraintTop_toBottomOf="@+id/movie_detail_rating"
-                tools:text="Release date: 2018" />
+                tools:text="Duration: 120 minutes" />
 
         <TextView
                 android:id="@+id/movie_detail_budget"
@@ -89,10 +91,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/movie_detail_release_date"
-                app:layout_constraintStart_toStartOf="@+id/movie_detail_release_date"
-                app:layout_constraintTop_toBottomOf="@+id/movie_detail_release_date"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/movie_detail_runtime"
+                app:layout_constraintStart_toStartOf="@+id/movie_detail_runtime"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_runtime"
                 tools:text="Budget: $78.000.000" />
 
         <TextView
@@ -101,10 +103,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
-                android:textSize="16sp"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/movie_detail_budget"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/movie_detail_budget"
+                app:layout_constraintTop_toBottomOf="@+id/movie_detail_box_office_revenue"
+                tools:text="Total revenue: $102.543.518" />
+
+        <TextView
+                android:id="@+id/movie_detail_box_office_revenue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/movie_detail_budget"
                 app:layout_constraintStart_toStartOf="@+id/movie_detail_budget"
                 app:layout_constraintTop_toBottomOf="@+id/movie_detail_budget"
-                tools:text="Total revenue: 102.543.518" />
+                tools:text="B.O. revenue: $557,800,000.00" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

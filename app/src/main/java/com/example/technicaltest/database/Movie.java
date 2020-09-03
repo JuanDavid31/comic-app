@@ -19,9 +19,11 @@ public class Movie implements Serializable {
     @ColumnInfo(name = "post_image_url")
     public String posterImageUrl;
     public String rating;
-    @ColumnInfo(name = "release_date")
-    public String releaseDate;
+    @ColumnInfo(name = "runtime")
+    public String runTime;
     public String budget;
+    @ColumnInfo(name = "box_office_revenue")
+    public String boxOfficeRevenue;
     @ColumnInfo(name = "total_revenue")
     public String totalRevenue;
 

@@ -18,13 +18,14 @@ public class MapperUtils {
             Movie movie = new Movie();
             movie.id = movieProperty.id;
             movie.name = movieProperty.name;
-            movie.description = movieProperty.description;
+            movie.description = movieProperty.description != null? movieProperty.description : "";
             movie.thumbImageUrl = movieProperty.image.thumbUrl;
             movie.posterImageUrl = movieProperty.image.smallUrl;
-            movie.rating = movieProperty.rating;
-            movie.releaseDate = movieProperty.releaseDate;
-            movie.budget = movieProperty.budget;
-            movie.totalRevenue = movieProperty.totalRevenue;
+            movie.rating = movieProperty.rating != null ? movieProperty.rating : "";
+            movie.runTime = movieProperty.runTime != null ? movieProperty.runTime : "";
+            movie.budget = movieProperty.budget != null ? movieProperty.budget : "";
+            movie.boxOfficeRevenue = movieProperty.boxOfficeRevenue != null ? movieProperty.boxOfficeRevenue : "";
+            movie.totalRevenue = movieProperty.totalRevenue != null ? movieProperty.totalRevenue : "";
             movies.add(movie);
         }
         return movies;
@@ -44,8 +45,19 @@ public class MapperUtils {
         }
     }
 
-    public static String stringNumberToHumanReadableNumber(String number){
-        int i = Integer.parseInt(number);
-        return NumberFormat.getIntegerInstance().format(i);
+    public static String stringNumberToHumanReadableMoney(String number){
+        String humanReadableNumber = "";
+        try{
+            int i = Integer.parseInt(number);
+            humanReadableNumber = NumberFormat.getIntegerInstance().format(i);
+        }catch (NumberFormatException e){
+            humanReadableNumber = number;
+        }
+
+        if(humanReadableNumber.trim().startsWith("$")){
+            return humanReadableNumber;
+        }else{
+            return String.format("$%s", humanReadableNumber);
+        }
     }
 }
