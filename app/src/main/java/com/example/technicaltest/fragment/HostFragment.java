@@ -46,11 +46,19 @@ public class HostFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         recyclerView.setAdapter(adapter);
 
-        vm.getMovies().observe(getViewLifecycleOwner(), adapter::setMovies);
+        vm.getMovies().observe(getViewLifecycleOwner(), movies -> {
+            if(movies.size() == 0){
+                Log.i("HostFragment", "No movies"); //Si se llama
+            }else{
+                loadingPanel.setVisibility(View.GONE);
+                connectionErrorImage.setVisibility(View.GONE);
+            }
+            adapter.setMovies(movies);
+        });
 
         vm.getLoadingResult().observe(getViewLifecycleOwner(), result ->{
             loadingPanel.setVisibility(View.GONE);
-            if(result == MovieRepository.LoadingResult.ERROR){
+            if(result == MovieRepository.LoadingResult.ERROR && adapter.getItemCount() == 0){
                 connectionErrorImage.setVisibility(View.VISIBLE);
             }
         });

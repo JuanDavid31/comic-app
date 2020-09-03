@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.technicaltest.database.Movie;
+import com.example.technicaltest.database.MovieDao;
 import com.example.technicaltest.database.MovieDataBase;
 import com.example.technicaltest.repository.MovieRepository;
 
@@ -14,16 +15,19 @@ import java.util.List;
 
 public class HostFragmentViewModel extends ViewModel {
 
+    private MovieDao movieDao;
+
     private MovieRepository movieRepository;
-    private MutableLiveData<List<Movie>> movies = new MutableLiveData();
     public LiveData<List<Movie>> getMovies(){
-        return movies;
+        return movieDao.getMovies();
     }
 
     private LiveData<MovieRepository.LoadingResult> loadingResult;
 
     public HostFragmentViewModel(Context context){
-        movieRepository = new MovieRepository(MovieDataBase.getInstance(context), movies); //TODO: Eliminar despues
+        MovieDataBase db = MovieDataBase.getInstance(context);
+        movieRepository = new MovieRepository(db);
+        movieDao = db.movieDao();
         loadingResult = movieRepository.refreshVideos();
     }
 

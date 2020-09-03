@@ -25,11 +25,9 @@ public class MovieRepository {
     public enum LoadingResult{ SUCCESS, ERROR}
 
     private MovieDao movieDao;
-    private MutableLiveData<List<Movie>> moviesLiveData;
 
-    public MovieRepository(MovieDataBase db, MutableLiveData<List<Movie>> moviesLiveData){
+    public MovieRepository(MovieDataBase db){
         movieDao = db.movieDao();
-        this.moviesLiveData = moviesLiveData;
     }
 
     public LiveData<LoadingResult> refreshVideos(){
@@ -41,13 +39,16 @@ public class MovieRepository {
                 List<MovieProperty> movieProperties = responseProperty.movies;
                 List<Movie> movies = MapperUtils.mapMoviePropertiesToMovie(movieProperties);
                 loadingResult.setValue(LoadingResult.SUCCESS);
-                moviesLiveData.setValue(movies);
+                MovieDataBase.databaseWriteExecutor.execute(() ->{
+                    movieDao.insertAll(movies.toArray(new Movie[movies.size()]));
+                });
+
             }
 
             @Override
             public void onFailure(Call<ResponseProperty> call, Throwable t) {
                 Log.e("MovieVideoRepository", "Failure: " + t.getMessage());
-                loadingResult.setValue(LoadingResult.SUCCESS);
+                loadingResult.setValue(LoadingResult.ERROR);
             }
         });
 
