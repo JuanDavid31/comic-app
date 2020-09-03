@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">Technial test</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="comicVineApiKey">603aa41c30f8420b9d4fa00584acf281ddca30ef</string>
-    <string name="apiUrl">https://comicvine.gamespot.com/api/</string>
+    <string name="app_name">Movie list</string>
+    <string name="comic_vine_api_url">https://comicvine.gamespot.com/api/</string>
+    <string name="comic_vine_api_key">603aa41c30f8420b9d4fa00584acf281ddca30ef</string>
     <string name="movie_thumbnail">Movie thumbnail</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="close_modal">Close</string>
+    <string name="full_view">Full View</string>
+    <string name="poster_image">Poster image</string>
+    <string name="connection_error">Connection error</string>
+    <string name="post_image">Post image</string>
+    <string name="duration">Duration:</string>
 </resources>

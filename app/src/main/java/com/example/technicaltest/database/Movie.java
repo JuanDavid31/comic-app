@@ -39,6 +39,11 @@ public class Movie implements Serializable {
                 ", description='" + description + '\'' +
                 ", thumbImageUrl='" + thumbImageUrl + '\'' +
                 ", posterImageUrl='" + posterImageUrl + '\'' +
+                ", rating='" + rating + '\'' +
+                ", runTime='" + runTime + '\'' +
+                ", budget='" + budget + '\'' +
+                ", boxOfficeRevenue='" + boxOfficeRevenue + '\'' +
+                ", totalRevenue='" + totalRevenue + '\'' +
                 '}';
     }
 }

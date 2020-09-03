@@ -12,6 +12,6 @@
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
-            android:contentDescription="Post image" />
+            android:contentDescription="@string/post_image" />
 
 </ScrollView>

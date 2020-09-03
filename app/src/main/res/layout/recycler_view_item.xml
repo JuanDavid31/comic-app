@@ -4,11 +4,10 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:scaleType="centerCrop"
-        app:cardCornerRadius="4dp"
+        android:layout_margin="5dp"
         android:adjustViewBounds="true"
-        android:layout_margin="5dp">
-    <!--android:layout_width="140dp"-->
+        android:scaleType="centerCrop"
+        app:cardCornerRadius="4dp">
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -19,27 +18,27 @@
                 android:id="@+id/movie_item_thumbnail_image"
                 android:layout_width="match_parent"
                 android:layout_height="175dp"
+                android:adjustViewBounds="true"
+                android:background="#2d2d2d"
                 android:contentDescription="@string/movie_thumbnail"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:adjustViewBounds="true"
-                android:background="#2d2d2d"
                 tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
                 android:id="@+id/movie_item_title_text"
                 android:layout_width="match_parent"
-                android:textColor="#2d2d2d"
                 android:layout_height="35dp"
-                android:textAlignment="center"
-                android:textSize="12sp"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="#2d2d2d"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/movie_item_thumbnail_image"
                 app:layout_constraintTop_toTopOf="@+id/movie_item_thumbnail_image"
-                tools:text="Superman IV: The Quest for Peace"/>
+                tools:text="Superman IV: The Quest for Peace" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

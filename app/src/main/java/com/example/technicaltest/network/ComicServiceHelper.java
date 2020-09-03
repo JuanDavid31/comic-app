@@ -1,23 +1,56 @@
 package com.example.technicaltest.network;
 
+import android.content.Context;
+import android.content.res.Resources;
+
+import com.example.technicaltest.R;
+
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class ComicServiceHelper {
 
-    private final static String BASE_URL = "https://comicvine.gamespot.com/api/";
-
     private static ComicService apiService = null;
 
-    public static ComicService getClient(){
-        if(apiService == null){
+    public static ComicService getClient(Context context) {
+        if (apiService == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .addConverterFactory(MoshiConverterFactory.create())
-                    .baseUrl(BASE_URL)
+                    .client(getCustomClient(context))
+                    .baseUrl(getBaseUrl(context))
                     .build();
             apiService = retrofit.create(ComicService.class);
         }
         return apiService;
+    }
+
+    private static OkHttpClient getCustomClient(Context context) {
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+        clientBuilder.addInterceptor(chain -> {
+            Request original = chain.request();
+            HttpUrl originalHttpUrl = original.url();
+
+            HttpUrl url = originalHttpUrl.newBuilder()
+                    .addQueryParameter("api_key", context.getString(R.string.comic_vine_api_key))
+                    .addQueryParameter("format", "json")
+                    .build();
+
+            // Request customization: add request headers
+            Request.Builder requestBuilder = original.newBuilder()
+                    .url(url);
+
+            Request request = requestBuilder.build();
+            return chain.proceed(request);
+        });
+
+        return clientBuilder.build();
+    }
+
+    private static String getBaseUrl(Context context){
+        return context.getString(R.string.comic_vine_api_url);
     }
 }
 

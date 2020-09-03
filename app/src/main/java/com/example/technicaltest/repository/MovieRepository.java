@@ -1,6 +1,7 @@
 package com.example.technicaltest.repository;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -26,23 +27,23 @@ public class MovieRepository {
 
     private MovieDao movieDao;
 
-    public MovieRepository(MovieDataBase db){
+    private Context context;
+
+    public MovieRepository(Context context, MovieDataBase db){
+        this.context = context;
         movieDao = db.movieDao();
     }
 
     public LiveData<LoadingResult> refreshVideos(){
-        MutableLiveData loadingResult = new MutableLiveData();
-        ComicServiceHelper.getClient().getMovies().enqueue(new Callback<ResponseProperty>() {
+        MutableLiveData<LoadingResult> loadingResult = new MutableLiveData<LoadingResult>();
+        ComicServiceHelper.getClient(context).getMovies().enqueue(new Callback<ResponseProperty>() {
             @Override
             public void onResponse(Call<ResponseProperty> call, Response<ResponseProperty> response) {
                 ResponseProperty responseProperty = response.body();
                 List<MovieProperty> movieProperties = responseProperty.movies;
-                List<Movie> movies = MapperUtils.mapMoviePropertiesToMovie(movieProperties);
+                Movie[] movies = MapperUtils.mapMoviePropertiesToMovie(movieProperties);
                 loadingResult.setValue(LoadingResult.SUCCESS);
-                MovieDataBase.databaseWriteExecutor.execute(() ->{
-                    movieDao.insertAll(movies.toArray(new Movie[movies.size()]));
-                });
-
+                MovieDataBase.databaseWriteExecutor.execute(() -> movieDao.insertAll(movies));
             }
 
             @Override

@@ -26,12 +26,12 @@ public class RecyclerViewAdapter extends ListAdapter<Movie, RecyclerViewAdapter.
     private List<Movie> movies = new ArrayList<>();
     private Fragment fragment;
 
-    public RecyclerViewAdapter(AdapterDiffCallback adapterDiffCallback, Fragment fragment){
+    public RecyclerViewAdapter(AdapterDiffCallback adapterDiffCallback, Fragment fragment) {
         super(adapterDiffCallback);
         this.fragment = fragment;
     }
 
-    public void setMovies(List<Movie> movies){
+    public void setMovies(List<Movie> movies) {
         this.movies = movies;
         notifyDataSetChanged();
     }
@@ -39,7 +39,8 @@ public class RecyclerViewAdapter extends ListAdapter<Movie, RecyclerViewAdapter.
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recycler_view_item, parent, false);
         return new ItemViewHolder(itemView);
     }
 
@@ -56,10 +57,8 @@ public class RecyclerViewAdapter extends ListAdapter<Movie, RecyclerViewAdapter.
                         .error(R.drawable.ic_broken_image))
                 .into(holder.movieThumbnail);
 
-        holder.root.setOnClickListener(view -> {
-            NavHostFragment.findNavController(fragment)
-                    .navigate(HostFragmentDirections.actionHostFragmentToDetailFragment(currentMovie));
-        });
+        holder.root.setOnClickListener(view -> NavHostFragment.findNavController(fragment)
+                .navigate(HostFragmentDirections.actionHostFragmentToDetailFragment(currentMovie)));
     }
 
     @Override
@@ -67,7 +66,7 @@ public class RecyclerViewAdapter extends ListAdapter<Movie, RecyclerViewAdapter.
         return movies.size();
     }
 
-    static class ItemViewHolder extends RecyclerView.ViewHolder{
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
 
         private View root;
         private ImageView movieThumbnail;

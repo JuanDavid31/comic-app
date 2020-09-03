@@ -8,7 +8,7 @@ public class MovieProperty {
     public String description = "";
     public ImageProperty image;
     public String rating;
-    @Json(name = "runTime")
+    @Json(name = "runtime")
     public String runTime;
     public String budget;
     @Json(name = "box_office_revenue")

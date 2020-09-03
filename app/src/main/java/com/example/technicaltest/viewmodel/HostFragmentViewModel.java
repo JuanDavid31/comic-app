@@ -17,7 +17,6 @@ public class HostFragmentViewModel extends ViewModel {
 
     private MovieDao movieDao;
 
-    private MovieRepository movieRepository;
     public LiveData<List<Movie>> getMovies(){
         return movieDao.getMovies();
     }
@@ -26,7 +25,7 @@ public class HostFragmentViewModel extends ViewModel {
 
     public HostFragmentViewModel(Context context){
         MovieDataBase db = MovieDataBase.getInstance(context);
-        movieRepository = new MovieRepository(db);
+        MovieRepository movieRepository = new MovieRepository(context, db);
         movieDao = db.movieDao();
         loadingResult = movieRepository.refreshVideos();
     }
