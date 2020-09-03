@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Technial test</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="comicVineApiKey">603aa41c30f8420b9d4fa00584acf281ddca30ef</string>
+    <string name="apiUrl">https://comicvine.gamespot.com/api/</string>
+    <string name="movie_thumbnail">Movie thumbnail</string>
 </resources>

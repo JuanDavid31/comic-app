@@ -1,4 +1,4 @@
-package com.example.technialtest;
+package com.example.technicaltest;
 
 import org.junit.Test;
 
