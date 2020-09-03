@@ -22,6 +22,8 @@ import retrofit2.Response;
 
 public class MovieRepository {
 
+    public enum LoadingResult{ SUCCESS, ERROR}
+
     private MovieDao movieDao;
     private MutableLiveData<List<Movie>> moviesLiveData;
 
@@ -30,24 +32,25 @@ public class MovieRepository {
         this.moviesLiveData = moviesLiveData;
     }
 
-    public void refreshVideos(){
+    public LiveData<LoadingResult> refreshVideos(){
+        MutableLiveData loadingResult = new MutableLiveData();
         ComicServiceHelper.getClient().getMovies().enqueue(new Callback<ResponseProperty>() {
-
-            //@SuppressLint("NewApi")//TODO: Borrar cuando quite el forEach
             @Override
             public void onResponse(Call<ResponseProperty> call, Response<ResponseProperty> response) {
                 ResponseProperty responseProperty = response.body();
                 List<MovieProperty> movieProperties = responseProperty.movies;
-                //movieProperties.forEach(movie -> Log.i("MovieVideoRepository", movie.toString()));
-                Log.d("MovieVideoRepository", responseProperty.toString());
                 List<Movie> movies = MapperUtils.mapMoviePropertiesToMovie(movieProperties);
+                loadingResult.setValue(LoadingResult.SUCCESS);
                 moviesLiveData.setValue(movies);
             }
 
             @Override
             public void onFailure(Call<ResponseProperty> call, Throwable t) {
                 Log.e("MovieVideoRepository", "Failure: " + t.getMessage());
+                loadingResult.setValue(LoadingResult.SUCCESS);
             }
         });
+
+        return loadingResult;
     }
 }

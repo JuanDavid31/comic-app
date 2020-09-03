@@ -1,6 +1,7 @@
 package com.example.technicaltest.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.technicaltest.R;
+import com.example.technicaltest.repository.MovieRepository;
 import com.example.technicaltest.viewmodel.HostFragmentViewModel;
 import com.example.technicaltest.viewmodel.ViewModelFactory;
 
@@ -36,6 +38,8 @@ public class HostFragment extends Fragment {
 
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(new RecyclerViewAdapter.AdapterDiffCallback(), this);
 
+        View loadingPanel = fragment.findViewById(R.id.loadingPanel);
+        View connectionErrorImage = fragment.findViewById(R.id.connection_error_image);
         RecyclerView recyclerView = (RecyclerView)fragment.findViewById(R.id.recycler_view);
 
         recyclerView.setHasFixedSize(true);
@@ -43,6 +47,13 @@ public class HostFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         vm.getMovies().observe(getViewLifecycleOwner(), adapter::setMovies);
+
+        vm.getLoadingResult().observe(getViewLifecycleOwner(), result ->{
+            loadingPanel.setVisibility(View.GONE);
+            if(result == MovieRepository.LoadingResult.ERROR){
+                connectionErrorImage.setVisibility(View.VISIBLE);
+            }
+        });
 
         return fragment;
     }
