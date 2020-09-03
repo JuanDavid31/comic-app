@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         tools:context="com.example.technicaltest.fragment.FullScreenImageFragment">
 
-    <ImageView
+    <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/movie_full_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
