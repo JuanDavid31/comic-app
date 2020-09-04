@@ -47,4 +47,5 @@ abstract class DbTest {
         countingTaskExecutorRule.drainTasks(10, TimeUnit.SECONDS)
         _db.close()
     }
+
 }
