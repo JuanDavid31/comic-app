@@ -1,7 +1,6 @@
 package com.example.technicaltest.network;
 
 import android.content.Context;
-import android.content.res.Resources;
 
 import com.example.technicaltest.R;
 
@@ -12,6 +11,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class ComicServiceHelper {
+
+    private static String API_KEY = "api_key";
+    private static String FORMAT = "format";
+    private static String FORMAT_VALUE = "json";
 
     private static ComicService apiService = null;
 
@@ -34,8 +37,8 @@ public class ComicServiceHelper {
             HttpUrl originalHttpUrl = original.url();
 
             HttpUrl url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("api_key", context.getString(R.string.comic_vine_api_key))
-                    .addQueryParameter("format", "json")
+                    .addQueryParameter(API_KEY, context.getString(R.string.comic_vine_api_key))
+                    .addQueryParameter(FORMAT, FORMAT_VALUE)
                     .build();
 
             // Request customization: add request headers

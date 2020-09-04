@@ -42,32 +42,44 @@ public class DetailFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false);
 
         binding.movieDetailName.setText(movie.name);
-
-        Spanned spannedDescription;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            spannedDescription = Html.fromHtml(movie.description, Html.FROM_HTML_MODE_COMPACT);
-        } else {
-             spannedDescription = Html.fromHtml(movie.description);
-        }
-        binding.movieDetailDescription.setText(spannedDescription);
-
-        binding.movieDetailRating.setText(movie.rating);
+        binding.movieDetailDescription.setText(getHtml(movie.description));
+        binding.movieDetailRating.setText(getHtml(String.format("<b>%s</b>", movie.rating)));
 
         if(movie.runTime.equals("")){
-            binding.movieDetailRuntime.setText("Duration:");
+            binding.movieDetailRuntime.setText(getHtml("<b>%s</b> No info.", "Duration:"));
         }else{
-            binding.movieDetailRuntime.setText(String.format("Duration: %s minutes", movie.runTime));
+            binding.movieDetailRuntime.setText(getHtml("<b>Duration:</b> %s minutes", movie.runTime));
         }
 
-        binding.movieDetailBudget.setText(String.format("Budget: %s", MapperUtils.stringNumberToHumanReadableMoney(movie.budget)));
-        binding.movieDetailBoxOfficeRevenue.setText(String.format("B.O. revenue: %s", MapperUtils.stringNumberToHumanReadableMoney(movie.boxOfficeRevenue)));
-        binding.movieDetailTotalRevenue.setText(String.format("Total revenue: %s", MapperUtils.stringNumberToHumanReadableMoney(movie.totalRevenue)));
+        binding.movieDetailBudget.setText(getHtml("<b>Budget:</b> %s", MapperUtils.stringNumberToHumanReadableMoney(movie.budget)));
+        binding.movieDetailBoxOfficeRevenue.setText(getHtml("<b>B.O. revenue:</b> %s", MapperUtils.stringNumberToHumanReadableMoney(movie.boxOfficeRevenue)));
+        binding.movieDetailTotalRevenue.setText(getHtml("<b>Total revenue:</b> %s", MapperUtils.stringNumberToHumanReadableMoney(movie.totalRevenue)));
         ImageView posterImage = binding.movieDetailImage;
         loadImage(posterImage);
 
         posterImage.setOnClickListener(this::onPosterImageClick);
 
         return binding.getRoot();
+    }
+
+    private Spanned getHtml(String html){
+        Spanned spannedHtml;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            spannedHtml = Html.fromHtml(html, Html.FROM_HTML_MODE_COMPACT);
+        } else {
+            spannedHtml = Html.fromHtml(html);
+        }
+        return spannedHtml;
+    }
+
+    private Spanned getHtml(String format, String html){
+        Spanned spannedHtml;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            spannedHtml = Html.fromHtml(String.format(format, html), Html.FROM_HTML_MODE_COMPACT);
+        } else {
+            spannedHtml = Html.fromHtml(String.format(format, html));
+        }
+        return spannedHtml;
     }
 
     private void loadImage(ImageView imageView){

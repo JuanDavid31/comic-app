@@ -21,7 +21,7 @@
                     android:layout_height="248dp"
                     android:layout_marginStart="@dimen/margin_movie_thumbnail"
                     android:layout_marginTop="@dimen/margin_movie_thumbnail"
-                    android:contentDescription="Poster image"
+                    android:contentDescription="@string/poster_image"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:adjustViewBounds="true"
@@ -33,9 +33,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="@dimen/margin_movie_thumbnail"
-                    android:text="TextView"
+                    android:text=""
                     android:textAlignment="center"
                     android:textSize="22sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/movie_detail_image"
@@ -62,7 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
                         android:textSize="18sp"
-                        tools:text="Description" />
+                        tools:text="@string/description_text" />
             </ScrollView>
 
             <TextView
