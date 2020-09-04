@@ -31,6 +31,11 @@ public class Movie implements Serializable {
 
     }
 
+    public Movie(int id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +

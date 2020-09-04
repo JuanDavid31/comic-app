@@ -16,8 +16,8 @@ public class MapperUtils {
             movie.id = movieProperty.id;
             movie.name = movieProperty.name;
             movie.description = movieProperty.description != null ? movieProperty.description : "";
-            movie.thumbImageUrl = movieProperty.image.thumbUrl;
-            movie.posterImageUrl = movieProperty.image.smallUrl;
+            movie.thumbImageUrl = movieProperty.image.thumbUrl != null ? movieProperty.image.thumbUrl : "";
+            movie.posterImageUrl = movieProperty.image.smallUrl != null ? movieProperty.image.smallUrl : "";
             movie.rating = movieProperty.rating != null ? movieProperty.rating : "";
             movie.runTime = movieProperty.runTime != null ? movieProperty.runTime : "";
             movie.budget = movieProperty.budget != null ? movieProperty.budget : "";

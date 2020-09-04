@@ -15,4 +15,10 @@ public class MovieProperty {
     public String boxOfficeRevenue;
     @Json(name = "total_revenue")
     public String totalRevenue;
+
+    public MovieProperty(int id, String name){
+        this.id = id;
+        this.name = name;
+        this.image = new ImageProperty();
+    }
 }
