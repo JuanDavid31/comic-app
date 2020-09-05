@@ -35,7 +35,7 @@ public class MovieRepository {
     }
 
     public LiveData<LoadingResult> refreshVideos(){
-        MutableLiveData<LoadingResult> loadingResult = new MutableLiveData<LoadingResult>();
+        MutableLiveData<LoadingResult> loadingResult = new MutableLiveData<>();
         ComicServiceHelper.getClient(context).getMovies().enqueue(new Callback<ResponseProperty>() {
             @Override
             public void onResponse(Call<ResponseProperty> call, Response<ResponseProperty> response) {
